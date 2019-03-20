@@ -1,0 +1,53 @@
+
+
+<body>
+    <!-- indexmain -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 mainbox" id="mainbox">
+                <!--menubegin-->
+                <div class="datamenubox" id="leftmenu">
+                    <div class="menuhead">系统设置</div>
+
+                    <ul class="list-group smenu">
+                        <li class="list-group-item " data-id = 'role'>角色管理</li>
+                        <li class="list-group-item " data-id = 'search'>查询管理</li>
+                        <li class="list-group-item " data-id = 'type'>人员类别管理</li>
+                    </ul>
+                </div>
+                <!--menuend-->
+                <!--mainboxbegin-->
+                <div class="col-md-12 rights" id="right">
+
+                    <iframe id='myIframe' src="" style="width:100%;height:700px" frameborder="0" scrolling="yes"></iframe>
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- indexmain end -->
+    </div>
+
+    <script type="text/javascript">
+        $("#leftmenu li").on('click',itemselect);
+        function itemselect(){
+            //alert($(this).attr('data-id'));
+            var dataid=$(this).attr('data-id');
+            $(this).addClass('on').siblings('li').removeClass('on');
+           
+            // 切换ifram
+            url =  dataid;
+            //alert(url);
+            $('#myIframe').attr('src', url);
+    
+        }
+    </script>
+
+
+
+
+
+
+   
+</body>

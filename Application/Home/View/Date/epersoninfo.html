@@ -1,0 +1,257 @@
+ <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/style.css">
+ <div style="width:890px; height:500;padding:10px;overflow-y: scroll">                    
+                            <!-- 基本信息 -->
+                            <div class="h35 clearfix">
+                                <span class="tit">考核记录</span>
+                                <span class="hid">隐藏&nbsp;<i class="fa fa-caret-down"></i></span>
+                            </div>
+                            <div class="xinxiitems clearfix">
+                                <!-- 一列是一个ul -->
+                                <div id="main" style="width: 600px;height:400px;"></div>
+                                
+                            </div> 
+                        
+                             <!-- 教育经历 -->
+                            <div class="h35 clearfix">
+                                <span class="tit">关系图谱</span>
+                                <span class="hid">隐藏&nbsp;<i class="fa fa-caret-down"></i></span>
+                            </div>
+                            <div class="xinxiitems clearfix">
+                              <div id="relation" style="width: 800px;height:800px;"></div>
+                               
+                            </div>
+
+ </div>       
+<script src="__PUBLIC__/static/script/jquery.1.11.1.js"></script>
+<script src="__PUBLIC__/echarts.js"></script>
+    <script>
+        // 打开弹窗
+        $(".h35").click(function() {
+                $(this).next().slideToggle(200);
+            })
+    </script>
+
+    <script type="text/javascript">
+        
+        var myChart = echarts.init(document.getElementById('main'));
+
+       // option = {
+       //          xAxis: {
+       //              data: {$x},
+       //              type: 'category',
+       //              //type: 'value',
+                  
+       //          },
+       //          yAxis: {
+       //               data: {$y},
+       //               type: 'value'
+       //              //type: 'category'
+       //              // axisLabel:{
+       //              //     formatter: function (value) {
+       //              //         var texts = [];
+       //              //         if(value==0){
+       //              //         texts.push('woo');
+       //              //         }
+       //              //         else if (value <=1) {
+       //              //         texts.push('好');
+       //              //         }
+       //              //         else if (value<= 2) {
+       //              //         texts.push('很好');
+       //              //         }
+       //              //         else if(value<= 3){
+       //              //         texts.push('非常好');
+       //              //         }
+       //              //         else{
+       //              //         texts.push('完美');
+       //              //         }
+       //              //         return texts;
+       //              //     }
+       //              // }
+       //          },
+       //          series: [{
+       //              data: {$d},
+       //             // data: ['优秀','优秀','优秀','优秀','优秀','优秀','优秀','优秀','优秀','优秀','优秀','优秀'],
+       //             // type: 'scatter'
+       //              type: 'line'
+       //          }]
+       //      };
+
+
+         option = {
+            // color: ['#e5b87f'],
+            tooltip : {
+                trigger: 'axis',
+                axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                    type : 'line'        // 默认为直线，可选为：'line' | 'shadow'
+                }
+            },
+            grid: {
+                top: '3%',
+                left: '0',
+                right: '0',
+                bottom: '0',
+                containLabel: true
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : {$x},  //数据值
+                    axisTick: {
+                        alignWithLabel: true
+                    }
+                }
+            ],
+            // yAxis:{},//默认
+            yAxis: {
+            axisTick : {show: false},//去掉刻度
+            splitLine:{      //去掉背景水平网格线
+                show:false  
+            },  
+            min:6,
+            max:13,
+            axisLabel:{
+               // 自定义y轴刻度信息
+                    formatter: function (value) {
+                        var texts = [];
+                        if(value==13){
+                            texts.push('优秀');
+                        }
+                        else if(value==12){
+                            texts.push('称职');
+                        }
+                        else if (value ==11) {
+                            texts.push('合格');
+                        }
+                        else if (value == 10) {
+                            texts.push('基本称职');
+                        }
+                        else if(value == 9){
+                            texts.push('基本合格');
+                        }
+                        else if(value == 8){
+                            texts.push('不称职');
+                        }
+                        else if(value == 7){
+                            texts.push('不合格');
+                        }
+                        else if(value == 6){
+                            texts.push('不定等次');
+                        }
+                        // else if(value == 5){
+                        //     texts.push('新录用人员试用期年度考核不确定等次');
+                        // }
+                        // else if(value == 4){
+                        //     texts.push('被立案调查尚未结案年度考核不确定等次');
+                        // }
+                        // else if(value == 3){
+                        //     texts.push('受政纪处分期间年度考核不确定等次');
+                        // }
+                        // else if(value == 2){
+                        //     texts.push('不进行考核');
+                        // }
+                        // else if(value == 1){
+                        //     texts.push('病、事假累计超过考核年度半年不进行考核');
+                        // }
+                        else{
+                             texts.push('不定等次');
+                        }
+
+                        return texts;
+                    }
+                }
+            },
+            series : [
+                {
+                    name:'',
+                    type:'line',
+                    barWidth: '45%',
+                    data:{$d} //x轴1到12月份
+                }
+            ]
+        };
+
+
+
+
+         myChart.setOption(option);
+
+</script>
+
+
+ <script type="text/javascript">
+        var myChart = echarts.init(document.getElementById('relation'));
+        option = {
+            title: { text: '关系图谱' },
+            tooltip: {
+                formatter: function (x) {
+                    return x.data.des;
+                }
+            },
+            series: [
+                {
+                    type: 'graph',
+                    layout: 'force',
+                    symbolSize: 80,
+                    roam: true,
+                    edgeSymbol: ['circle', 'arrow'],
+                    edgeSymbolSize: [4, 10],
+                    edgeLabel: {
+                        normal: {
+                            textStyle: {
+                                fontSize: 20
+                            }
+                        }
+                    },
+                    force: {
+                        repulsion: 2500,
+                        edgeLength: [10, 50]
+                    },
+                    draggable: true,
+                    itemStyle: {
+                        normal: {
+                            color: '#4b565b'
+                        }
+                    },
+                    lineStyle: {
+                        normal: {
+                            width: 2,
+                            color: '#4b565b'
+
+                        }
+                    },
+                    edgeLabel: {
+                        normal: {
+                            show: true,
+                            formatter: function (x) {
+                                return x.data.name;
+                            }
+                        }
+                    },
+                    label: {
+                        normal: {
+                            show: true,
+                            textStyle: {
+                            }
+                        }
+                    },
+                    data: {$h},
+                    links: {$l}
+                }
+            ]
+        };
+        myChart.setOption(option);
+
+        myChart.on('click',function(param){
+            console.log(param)
+            console.log(param.data.pa0100)
+            if(param.data.pa0100){
+                location.href = "{:U('Date/epersoninfo')}" +'/a0100/' +param.data.pa0100;
+            }
+           
+           // location.href = "{:U('Date/datedetail',array('level'=>$level,'type'=>$type,'b0100'=>$b0100))}" +'/x/' +param.name + '/y/' +param.seriesName + '/xindex/' + param.dataIndex + '/yindex/' + param.seriesIndex;
+
+         });
+    </script>
+ 

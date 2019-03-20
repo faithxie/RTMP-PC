@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>宁阳组织部领导干部查询系统</title>
+    <!-- jquery - boot -库文件 -->
+    <script src="__PUBLIC__/static/script/jquery.1.11.1.js"></script>
+    <script src="__PUBLIC__/static/script/bootstrap.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="__PUBLIC__/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <!-- 自定义 css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/style.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/plugins/FontAwesome/css/font-awesome.min.css">
+    <!--easyui包含文件-->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/plugins/easyui1.5.3/themes/material/easyui.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/plugins/easyui1.5.3/themes/icon.css">
+    <script type="text/javascript" src="__PUBLIC__/static/plugins/easyui1.5.3/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/plugins/easyui1.5.3/locale/easyui-lang-zh_CN.js"></script>
+    
+    <!-- datetimepicker -->
+    <script src="__PUBLIC__/static/script/common.js"></script>
+    <!-- Bootstrap treeview -->
+    <link rel="stylesheet" href="__PUBLIC__/static/plugins/treeview/bootstrap-treeview.min.css">
+    <script src="__PUBLIC__/static/plugins/treeview/bootstrap-treeview.min.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/static/script/html5shiv.js"></script>
+    <script src="__PUBLIC__/static/script/respond.js"></script>
+    <![endif]-->
+</head>
+
+<!-- header -->
+<div class="container-fluid">
+    <div class="row header">
+        <div class="logo pull-left"><a href="javascript:;">宁阳组织部领导干部查询系统</a></div>
+        <div class="navs pull-right">
+            <ul>
+                <li><i class="fa fa-user-circle"></i>  {$_SESSION['user']['name']}</li>
+                <!-- <li><i class="fa fa-question-circle"></i> 帮助</li> -->
+                <a href="{:U('Login/logout')}"><li><i class="fa fa-power-off"></i> 退出</li></a>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- end header -->
+
+<!-- mnavs -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <!-- <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          <i class="fa fa-building"></i>&nbsp;机构管理</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="default.html">子菜单</a></li>
+                        <li><a href="#">子菜单</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">子菜单</a></li>
+                    </ul>
+                </li> -->
+                <li class="dropdown">
+                    <a href="{:U('Org/index')}"><i class="fa fa-building"></i>&nbsp;机构管理</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{:U('User/index')}"><i class="fa fa-street-view"></i>&nbsp;人员管理</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{:U('Date/index')}" ><i class="fa fa-check-square-o"></i>&nbsp;数据展示</a>
+                </li>
+                <li class="dropdown">
+                    <a href="{:U('Search/index')}"><i class="fa fa-cloud-upload"></i>&nbsp;查询分析 </a>
+                </li>
+                <li class="dropdown">
+                    <a href="{:U('Role/index')}"><i class="fa fa-gear"></i>&nbsp;系统管理</a>
+                </li>
+
+                <li style="position: absolute;right: 10px">
+                    <a href="{:U('Index/index')}" style="color: rgb(81, 122, 3)">
+                        <i class="fa fa-arrow-left"></i>&nbsp;返回导航
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- end mnavs -->

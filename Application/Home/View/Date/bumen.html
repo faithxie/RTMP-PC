@@ -1,0 +1,259 @@
+ <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/style.css">
+                   
+                            <!-- 基本信息 -->
+                            <div class="h35 clearfix">
+                                <span class="tit">基本信息</span>
+                                <span class="hid">隐藏&nbsp;<i class="fa fa-caret-down"></i></span>
+                            </div>
+                            <div class="xinxiitems clearfix">
+                                <!-- 一列是一个ul -->
+                                <div id="main" style="width: 600px;height:400px;"></div>
+                                <div id="sex" style="width: 600px;height:400px;"></div>
+                            </div> 
+                        
+                             <!-- 教育经历 -->
+                            <div class="h35 clearfix">
+                                <span class="tit">教育经历</span>
+                                <span class="hid">隐藏&nbsp;<i class="fa fa-caret-down"></i></span>
+                            </div>
+                            <div class="xinxiitems clearfix">
+                              <div id="xueli" style="width: 600px;height:400px;"></div>
+                               
+                            </div>
+
+        
+<script src="__PUBLIC__/static/script/jquery.1.11.1.js"></script>
+<script src="__PUBLIC__/echarts.js"></script>
+    <script>
+        // 打开弹窗
+        $(".h35").click(function() {
+                $(this).next().slideToggle(200);
+            })
+    </script>
+
+    <script type="text/javascript">
+        
+        var myChart = echarts.init(document.getElementById('main'));
+
+        option = {
+            title : {
+                text: '年龄分布',
+                subtext: ''
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['男性','女性']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ['<25','25-30','30-35','35-40','40-45','45-50','50-55','55-60','60-65','65+']
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'男性',
+                    type:'bar',
+                    data:{$age1},
+                    // markPoint : {
+                    //     data : [
+                    //         {type : 'max', name: '最大值'},
+                    //         {type : 'min', name: '最小值'}
+                    //     ]
+                    // },
+                    // markLine : {
+                    //     data : [
+                    //         {type : 'average', name: '平均值'}
+                    //     ]
+                    // }
+                },
+                {
+                    name:'女性',
+                    type:'bar',
+                    data:{$age2},
+                    // markPoint : {
+                    //     data : [
+                    //         {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+                    //         {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                    //     ]
+                    // },
+                    // markLine : {
+                    //     data : [
+                    //         {type : 'average', name : '平均值'}
+                    //     ]
+                    // }
+                }
+            ]
+        };
+
+         myChart.setOption(option);
+         myChart.on('click',function(param){
+            console.log(param)
+            console.log(param.name)
+            console.log(param.dataIndex)
+            console.log(param.seriesName)
+            console.log("{$level}")
+            console.log("{$type}")
+            console.log("{$b0100}")
+            location.href = "{:U('Date/datedetail',array('level'=>$level,'type'=>$type,'b0100'=>$b0100))}" +'/x/' +param.name + '/y/' +param.seriesName + '/xindex/' + param.dataIndex + '/yindex/' + param.seriesIndex;
+
+         });
+
+        var sex = echarts.init(document.getElementById('sex'));
+       var data = JSON.stringify( {$data});
+       var data = JSON.parse( data);
+       //console.log(data)
+       //console.log(data.legendData)
+        option_sex = {
+            title : {
+                text: '性别比例',
+                subtext: '',
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                type: 'scroll',
+                orient: 'vertical',
+                right: 10,
+                top: 20,
+                bottom: 20,
+                data: data.legendData,
+
+                selected: data.selected
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    dataView : {show: true, readOnly: false},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+             
+            series : [
+                {
+                    name: '性别',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['40%', '50%'],
+                    data: data.seriesData,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        sex.setOption(option_sex);
+        sex.on('click',function(param){
+            console.log(param)
+            console.log(param.name)
+            console.log(param.dataIndex)
+            console.log(param.seriesName)
+            console.log("{$level}")
+            console.log("{$type}")
+            console.log("{$b0100}")
+            location.href = "{:U('Date/datedetail',array('level'=>$level,'type'=>$type,'b0100'=>$b0100))}" +'/x/' +param.name + '/y/' +param.seriesName + '/xindex/' + param.dataIndex + '/yindex/' + param.seriesIndex;
+
+         });
+
+    </script>
+
+    <!-- 学历 -->
+    <script type="text/javascript">
+        
+        var xueli = echarts.init(document.getElementById('xueli'));
+       var data = JSON.stringify( {$xueli});
+       var data = JSON.parse( data);
+       //console.log(data)
+       //console.log(data.legendData)
+        option_xueli = {
+            title : {
+                text: '学历分布',
+                subtext: '',
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                type: 'scroll',
+                orient: 'vertical',
+                right: 10,
+                top: 20,
+                bottom: 20,
+                data: data.legendData,
+
+                 selected: data.selected
+            },
+             toolbox: {
+                show : true,
+                feature : {
+                    dataView : {show: true, readOnly: false},
+                   
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            series : [
+                {
+                    name: '学历',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['40%', '50%'],
+                    data: data.seriesData,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+        xueli.setOption(option_xueli);
+        xueli.on('click',function(param){
+            console.log(param)
+            console.log(param.name)
+            console.log(param.dataIndex)
+            console.log(param.seriesName)
+            console.log("{$level}")
+            console.log("{$type}")
+            console.log("{$b0100}")
+            location.href = "{:U('Date/datedetail',array('level'=>$level,'type'=>$type,'b0100'=>$b0100))}" +'/x/' +param.name + '/y/' +param.seriesName + '/xindex/' + param.dataIndex + '/yindex/' + param.seriesIndex;
+
+         });
+
+
+    </script>
+
+ 

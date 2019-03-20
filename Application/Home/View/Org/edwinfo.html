@@ -1,0 +1,525 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/easyui/1.3.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/easyui/css/icon.css" />
+<script type="text/javascript" src="__PUBLIC__/easyui/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/easyui/easyui/1.3.4/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/easyui/easyui/1.3.4/locale/easyui-lang-zh_CN.js"></script>
+<!-- <script type="text/javascript" src="__PUBLIC__/release/jeasyui.extensions.all.min.js"></script> -->
+
+<div class="easyui-layout" data-options="fit:true">
+  
+    <div data-options="region:'center',border:false">
+        <!-- Begin of toolbar -->
+        <div id="wu-toolbar">
+           
+        </div>
+         
+        <!-- End of toolbar -->
+       <div id="tt"  style="width:880px;"> 
+                  
+                        <table id="base" ></table> 
+                               <div style="text-align: center; padding: 5px;">  
+                                    <a href="javascript:void(0)" onclick="saveAddData()" id="btn-save"  class="easyui-linkbutton" iconCls="icon-save">保存</a>&nbsp;&nbsp;&nbsp;&nbsp;  
+                                </div> 
+
+        </div>  
+
+
+    </div>
+</div>
+
+<div id="diqu-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+<div id="dw-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+<div id="zy-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+<div id="xw-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+<div id="jcmc-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+<div id="rzjg-window" class="earyui-window" title="选择" style="width: 550px; height: 350px; padding: 0px; background:#fafafa; ">
+
+
+<script type="text/javascript">
+    /**
+    * Name 载入数据
+    */
+    //创建时间格式化显示
+    /**************************************时间格式化处理************************************/
+    function dateFtt(fmt,date)   
+    { //author: meizz   
+      var o = {   
+        "M+" : date.getMonth()+1,                 //月份   
+        "d+" : date.getDate(),                    //日   
+        "h+" : date.getHours(),                   //小时   
+        "m+" : date.getMinutes(),                 //分   
+        "s+" : date.getSeconds(),                 //秒   
+        "q+" : Math.floor((date.getMonth()+3)/3), //季度   
+        "S"  : date.getMilliseconds()             //毫秒   
+      };   
+      if(/(y+)/.test(fmt))   
+        fmt=fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));   
+      for(var k in o)   
+        if(new RegExp("("+ k +")").test(fmt))   
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+      return fmt;   
+    } 
+
+    function crtTimeFtt(value,row,index){
+        if(value !=''&& value != null){
+             var crtTime = new Date(value);
+            return dateFtt("yyyy-MM-dd",crtTime);//直接调用公共JS里面的时间类处理的办法 
+        }else{
+            return '';
+        }
+           
+    }
+
+     json_obj=JSON.stringify('{$mzjson}');
+     var xuelijson = JSON.parse('{$xuelijson}');
+     var cwjson = JSON.parse('{$cwjson}');
+     var zzjson = JSON.parse('{$zzjson}');
+     var pxlbjson = JSON.parse('{$pxlbjson}');
+     var pxjgjson = JSON.parse('{$pxjgjson}');
+     var pxblbjson = JSON.parse('{$pxblbjson}');
+     var pxlglbjson = JSON.parse('{$pxlglbjson}');
+     var jcjgjson = JSON.parse('{$jcjgjson}');
+     var khlbjson = JSON.parse('{$khlbjson}');
+     var khjgjson = JSON.parse('{$khjgjson}');
+
+    
+ </script>
+  
+ <script type="text/javascript">
+
+        
+
+
+        function updateActions(index){
+            $('#jiaoyu').datagrid('endEdit', index);//结束编辑
+            $('#jiaoyu').datagrid('refreshRow', index);
+        }
+      
+        /*单位点击事件*/
+        function dwclick(rowIndex){
+              localStorage.setItem("pdw",rowIndex);
+             dwWin.window('open');
+        }
+        /*  
+             单元格  点击事件 专业点击事件
+        */
+        function zyclick(row,index) {
+            // body...
+            
+            if(row =="A0707"){
+
+                localStorage.setItem("a0707",index);
+                        
+                 zyWin.window('open');
+            }else if(row =="A0731"){  //学位
+                localStorage.setItem("a0731",index);
+                        
+                 xwWin.window('open');
+
+            }else if(row =="A3907"){  //奖励惩处记录
+
+                localStorage.setItem("A3907",index);
+                 jcmcWin.window('open');
+            }else if(row =="E0905"){  //奖励惩处记录
+
+                localStorage.setItem("E0905",index);
+                 rzjgWin.window('open');
+
+            }
+
+        }
+     
+ </script>  
+<script type="text/javascript">     
+$(function () {
+    $('#base').propertygrid({
+            url:'{:U("Org/egetorg")}',
+             width: 580,
+             height: 'auto',
+             showGroup: true,
+             scrollbarSize: 0,
+             queryParams: {
+                b0100: '{$b0100}',
+                subject: 'datagrid'
+            },
+            //单击事件   
+            onClickRow:function(rowIndex,rowData){
+                switch(rowData.field)
+                    {
+                        case 'pname':
+                            dwclick(rowIndex);
+                            break;
+                      
+                        default:
+                     }
+            },
+            //双击事件
+            onDblClickRow :function(rowIndex,rowData){
+            },
+            columns: [[
+            { field: 'name', title: '信息', width: 100, resizable: true },
+            { field: 'value', title: '数据', width: 100, resizable: false,
+                        formatter: function(value,rowData,rowIndex){
+                                     // console.log(rowData)
+                                     // console.log(rowIndex)
+                                    switch(rowData.field)
+                                    {
+                                        case 'A0111':
+                                            return crtTimeFtt(value,rowData,rowIndex);
+
+                                        case 'A0107':
+                                            return getDictNameByVal(value, rowData.field);
+                                        // case 'A0126':
+                                        //  return getDictNameByVal(value, rowData.field);
+                                        // case 'A0173':
+                                        //  return getDictNameByVal(value, rowData.field);
+                                        // case 'jg':
+                                        //  return getDictNameByVal(value, rowData.field);
+                                        // case 'cs':
+                                        //  return getDictNameByVal(value, rowData.field);
+                                        default:
+                                            return value;
+                                    }
+
+                                        return value;
+                                }
+                     } 
+ 
+            ]]
+        });
+
+    $('#base').propertygrid('collapseGroup'); 
+        
+         /*地区弹窗*/
+        customobjWin=$('#diqu-window').window({  
+            href:'{:U("User/diqutree")}',  
+            title:'选择地区',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        });  
+        /*单位弹窗*/
+        dwWin=$('#dw-window').window({  
+            href:'{:U("Org/dwtree")}',  
+            title:'选择单位',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        }); 
+        /*专业选择弹窗*/ 
+        zyWin=$('#zy-window').window({  
+            href:'{:U("User/zytree")}',  
+            title:'选择专业',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        }); 
+         /*学位弹窗*/ 
+        xwWin=$('#xw-window').window({  
+            href:'{:U("User/xwtree")}',  
+            title:'选择学位',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        }); 
+         /*奖惩名称弹窗*/ 
+        jcmcWin=$('#jcmc-window').window({  
+            href:'{:U("User/jcmctree")}',  
+            title:'选择',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        }); 
+         /*任职机构名称弹窗*/ 
+        rzjgWin=$('#rzjg-window').window({  
+            href:'{:U("User/rzjgtree")}',  
+            title:'选择',           
+            closed: true,  
+            minimizable:false,  
+            maximizable:false,    
+            collapsible:false,  
+            cache:false,  
+            shadow:false  
+        }); 
+
+     
+
+
+})
+</script>
+
+<script type="text/javascript">
+    function saveAddData(){
+        var data = $('#base').propertygrid('getRows');
+        // $('#base').window('closed')
+         $.ajax({
+            url:'{:U("Org/esave_org")}',
+            type:'post',
+            data:{data:data},
+            success:function(res){
+                res = JSON.parse(res);
+                if(res.status == "0"){
+                    $.messager.alert('信息','保存成功');
+                    
+                }else{
+                    $.messager.alert('信息','保存失败');
+                }
+                
+            }
+        });
+    }
+    /*保存 最高学历*/
+    function saveZYData(){
+
+        var data = $('#zhuanye').propertygrid('getRows');
+        var A0100 = localStorage.getItem("a0100");
+        // $('#base').window('closed')
+         $.ajax({
+            url:'{:U("User/esave_new_user_zhuanye")}',
+            type:'post',
+            data:{data:data,A0100:A0100},
+            success:function(res){
+                res = JSON.parse(res);
+                if(res.status == "0"){
+                    $.messager.alert('信息','保存成功');
+                }else{
+                    $.messager.alert('信息','保存失败');
+                }
+                
+            }
+        });
+
+    }
+    /*保存个人简历*/
+    function saveJLData(argument) {
+        // body...
+        var data = $('#richtext').val();
+        var A0100 = localStorage.getItem("a0100");
+        console.log(data);
+        // $('#base').window('closed')
+         $.ajax({
+            url:'{:U("User/esave_new_user_jianli")}',
+            type:'post',
+            data:{data:data,A0100:A0100},
+            success:function(res){
+                res = JSON.parse(res);
+                if(res.status == "0"){
+                    $.messager.alert('信息','保存成功');
+                }else{
+                    $.messager.alert('信息','保存失败');
+                }
+                
+            }
+        });
+    }
+
+    function closeWin(argument) {
+        // body...
+        $('#msgwindow').dialog('closed');
+    }
+</script>
+<script type="text/javascript">
+    // 新增一行   ---!并保存前一行
+    function addJYData(type){
+         a0100 = localStorage.getItem("a0100");
+         var t;
+         if(!a0100){
+            $.messager.alert('信息','请先保存基本信息');
+         }
+         //新增
+         switch(type)
+            {
+                case 'jy':
+                    t = $('#jiaoyu');
+                    break;
+                case 'gz':
+                    t = $('#gongzuo');
+                    break;
+                case 'jt':
+                    t = $('#jiating');
+                    break;
+                case 'px':
+                    t = $('#peixun');
+                    break;
+                case 'zy':
+                    t = $('#zhuanye');
+                    break;
+                case 'jc':
+                    t = $('#jiangcheng');
+                    break;
+                case 'kh':
+                    t = $('#kaohe');
+                    break;
+                case 'rz':
+                    t = $('#renzhi');
+                    break;
+                case 'fm':
+                    t = $('#fumian');
+                    break;
+                         
+                default:
+            }
+            //前一行
+            var table  = t.datagrid('getRows');
+            if(table){
+                var row = t.datagrid('getRows').length;
+                if(t.datagrid('getRows').editing){
+                    $.messager.alert('信息','请先保存');
+                }else{
+                    var index= t.datagrid('appendRow',{}).datagrid('getRows').length-1;
+                    t.datagrid('beginEdit',index);
+                    t.datagrid('getRows').editing = true;
+                }
+            }else{
+                t.datagrid('appendRow',{});
+                    t.datagrid('beginEdit',0);
+                    t.datagrid('getRows').editing = true;
+            }
+
+
+        
+
+        
+    }
+    // 保存单行
+    function saveRow(index,type){
+        var rowData;
+        var A0100 = localStorage.getItem("a0100");
+        var t;
+        switch(type)
+        {
+            case 'jy':
+               t = $('#jiaoyu');
+                break;
+            case 'gz':
+                t = $('#gongzuo');
+                break;
+            case 'jt':
+                t = $('#jiating');
+                break;
+            case 'px':
+                t = $('#peixun');
+                break;
+            case 'zy':
+                t = $('#zhuanye');
+                break;
+            case 'jc':
+                t = $('#jiangcheng');
+                break;
+            case 'kh':
+                t = $('#kaohe');
+                break;
+            case 'rz':
+                t = $('#renzhi');
+                break;
+            case 'fm':
+                t = $('#fumian');
+                break;
+            default:    
+        }
+
+        t.datagrid('endEdit',index)
+        t.datagrid('getRows').editing = false;
+
+        rowData= t.datagrid('getRows');
+        var data = rowData[index];
+        if(data){
+            $.ajax({
+                url:'{:U("User/esave_new_user_other")}',
+                type:'post',
+                data:{data:data,type:type,A0100:A0100},
+                success:function(res){
+                    res = JSON.parse(res);
+                    if(res.status == "0"){
+                        $.messager.alert('信息','保存成功');
+                        //localStorage.setItem("a0100",res.msg);
+                        
+                    }else{
+                        $.messager.alert('信息',res.msg);
+                    }
+                    
+                }
+            });
+        }else{
+            $.messager.alert('信息','请填写完整');
+        }
+        
+    }
+    /*删除单行*/
+    function delRow(index,type){
+        var rowData;
+        var A0100 = localStorage.getItem("a0100");
+        var t;
+        switch(type)
+        {
+            case 'jy':
+                t = $('#jiaoyu');
+                break;
+            case 'gz':
+                t = $('#gongzuo');
+                break;
+            case 'jt':
+                t = $('#jiating');
+                break;
+            case 'px':
+                t = $('#peixun');
+                break;
+            case 'zy':
+                t = $('#zhuanye');
+                break;
+            case 'jc':
+                t = $('#jiangcheng');
+                break;
+            case 'kh':
+                t = $('#kaohe');
+                break;
+            case 'rz':
+                t = $('#renzhi');
+                break;
+            case 'fm':
+                t = $('#fumian');
+                break;  
+
+                     
+            default:
+        }
+         t.datagrid('endEdit',index)
+        rowData= t.datagrid('getRows');
+
+        var data = rowData[index];
+        if(data){
+            $.ajax({
+                url:'{:U("User/edel_user_other")}',
+                type:'post',
+                data:{data:data,type:type,A0100:A0100},
+                success:function(res){
+                    res = JSON.parse(res);
+                    if(res.status == "0"){
+                         t.datagrid('deleteRow',index)
+                        $.messager.alert('信息','删除成功');
+                    }else{
+                        $.messager.alert('信息',res.msg);
+                    }
+                    
+                }
+            });
+        }else{
+            $.messager.alert('信息','请填写完整');
+        }
+    }
+</script>

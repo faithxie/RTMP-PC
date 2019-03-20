@@ -1,0 +1,208 @@
+ <include file = "Layout/header" />
+ 
+ <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/common.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/css/style.css">
+                   
+                            <!-- 基本信息 -->
+                            <div class="h35 clearfix">
+                                <span class="tit">基本信息</span>
+                                <span class="hid">隐藏&nbsp;<i class="fa fa-caret-down"></i></span>
+                            </div>
+                            <div class="xinxiitems clearfix">
+                                <!-- 一列是一个ul -->
+                            <form id = 'baseinfo' action="{:U('Org/save_dw')}">
+
+                                <ul class="base">
+                                        
+                                        <li class="clearfix">
+                                        <span>机构名称:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0105' class="easyui-textbox" value="{$info['b0105']}">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>机构简称:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0107' class="easyui-textbox"  value="{$info['b0107']}">
+                                        </div>
+                                    </li>
+                                    <!-- <li class="clearfix">
+                                        <span>组织机构代码:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0111' class="easyui-textbox">
+                                        </div>
+                                    </li> -->
+                                   <!--  <li class="clearfix">
+                                        <span>机构级别:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0113' class="easyui-textbox">
+                                        </div>
+                                    </li> -->
+                                    <li class="clearfix">
+                                        <span>上级单位:</span>
+                                        <div class="xtext">
+                                               <select class="easyui-combobox" name="PPtr">
+                                                <option value="{$info['pb0100']}">{$info['pname']}</option>
+                                                <volist name = 'pptr' id = 'c'>
+                                                <option value="{$c['b0100']}">{$c['b0105']}</option>
+                                                </volist>
+                                            </select>
+                                        </div>
+                                    </li>
+                                     <li class="clearfix">
+                                        <span>部门ID:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0100' class="easyui-textbox" value="{$info['b0100']}">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>单位性质类别:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0115' class="easyui-textbox" value="{$info['b0115']}">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>单位所在政区:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0125' class="easyui-textbox" value="{$info['b0125']}">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>内设机构类别:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'D0130' class="easyui-textbox" value="{$info['d0130']}">
+                                        </div>
+                                    </li>
+                                  
+                                    </ul>
+                                    <ul>
+                                    <li class="clearfix">
+                                        <span>内设领导职数:</span>
+                                        <div class="xtext">
+                                              <input type="number" name = 'B0164' class="easyui-numberbox" value="0">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>内设正职领导:</span>
+                                        <div class="xtext">
+                                              <input type="number" name = 'B0166' class="easyui-numberbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>内设副职领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0168' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>内设正职非领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0170' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>内设副职非领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0172' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>正职领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0174' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>副职领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0176' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>正职非领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0178' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>副职非领导:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0180' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                     </ul>
+                                    <ul>
+                                      <li class="clearfix">
+                                        <span>法人单位标识:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'D0107' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>行政编制:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0182' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>参照公务员法管理事业编制数:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0184' class="easyui-textbox">
+                                        </div>
+                                    </li>
+
+                                    <li class="clearfix">
+                                        <span>其他事业编制数:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0186' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>单位隶属关系:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'B0162' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>主管部门类别:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'D0113' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>机构编码-2:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'F0130' class="easyui-textbox">
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <span>区划属性:</span>
+                                        <div class="xtext">
+                                              <input type="text" name = 'F0101' class="easyui-textbox">
+                                        </div>
+                                    </li>
+        
+                                                               
+                                 </ul>                                
+                               <div class="tijiao  clearfix">
+                                    <button class="btn btn-warning" type="submit">保存</button>
+                                </div>
+                            </form> 
+                            </div> 
+                        
+                                  
+<script type="text/javascript">
+    $('#baseinfo').form({
+        success:function(data){
+             data = JSON.parse(data);
+             if(data.status == '1'){
+                 $.messager.alert('Info', data.msg, 'info');
+                }else{
+                     $.messager.alert('Info', '保存成功', 'info');
+                 }
+            }
+           
+    });
+</script>
+ 

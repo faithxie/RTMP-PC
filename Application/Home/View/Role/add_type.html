@@ -1,0 +1,44 @@
+  <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/plugins/easyui1.5.3/themes/material/easyui.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/static/plugins/easyui1.5.3/themes/icon.css">
+ 
+        <div class="row">
+        <form action = "{:U('Role/save_type')}" >
+            <div class="col-md-12">
+            <div class="blank10"></div>
+
+            <div class="row" id='org_parent'>
+                    <div class="col-md-12">
+                      <input class="easyui-textbox"  name = "gpmstypeid" style="width:400px" data-options="label:'原表名：', valueField:'id', textField:'text', required:true" value="{$user['gpmstypeid']}" >
+                    </div>
+                </div>
+                
+                <div class="blank10"></div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <input class="easyui-textbox" name='gpmstypedc' id='gpmstypedc' style="width:400px" data-options="label:'原类型：',required:true" value="{$user['gpmstypedc']}">
+                    </div>
+                </div>
+                 <div class="blank10"></div>
+                 <div class="row">
+                    <div class="col-md-12">
+                        <input class="easyui-textbox" name='zztypeid' id='zztypeid' style="width:400px" data-options="label:'新表名：',required:true" value="{$user['zztypeid']}">
+                    </div>
+                </div>
+                 <div class="blank10"></div>
+                  
+                 <div class="row">
+                    <div class="col-md-12">
+                        <input class="easyui-textbox" name='zztypedc' id='zztypedc' style="width:400px" data-options="label:'新类型：',required:true" value="{$user['zztypedc']}">
+                    </div>
+                </div>
+
+                <div class="blank10"></div>
+                <div class="btnin">
+                    <button class="btn btn-info" id="submits">提交</button>&nbsp;
+                    <button class="btn btn-default" id="cancel">取消</button>
+                </div>
+            </div>
+            </form>
+        </div>

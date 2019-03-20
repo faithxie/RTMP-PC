@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	 <script src="__PUBLIC__/echarts.js"></script>
+</head>
+<body>
+ <div id="containers" style="width: 1000px;height: 500px"></div>
+</body>
+
+<script type="text/javascript">
+	 var myChart = echarts.init(document.getElementById('containers'));
+
+       option = {
+    title : {
+        text: '性别比例',
+        subtext: '基于微信设置',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+   legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['男性','女性']
+    },
+    series : [
+        {
+            name: '性别',
+            type: 'pie',
+            radius : '55%',
+            center: ['40%', '50%'],
+            data: {$rs},
+              labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+         myChart.setOption(option,true);
+</script>
+</html>
