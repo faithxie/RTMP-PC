@@ -1,0 +1,22 @@
+/*
+* Copyright (c) 2017-2020 Lir Corporation. All rights reserved.
+*┌───────────────────────────────────────────┐
+*│　        www.doposoft.cn           　│
+*│　     版权所有：东博信息科技有限公司     │
+*└───────────────────────────────────────────┘
+*/
+/*
+    功能 ：页面基本布局控制代码
+	bruce.lee
+	2017.12.14
+*/
+*{padding:0;margin:0;}
+body{background: #ccc}
+/* toolbar */
+.toolbar{height:50px;background:#ccc;padding:5px 0 0 5px;}
+.toolbar button{/*border:none;background:#007fd9;color:#fff;border-radius:5px;*/padding:0 10px;line-height: 26px;margin-right:4px;}
+.toolbar .item{width:30px;height:30px;margin-right:5px;float:left;background:#f60;text-align:center;line-height:30px;margin-bottom:5px;}
+h1.hd{height:50px;line-height: 50px;font-size:35px;margin:0;}
+/* workarea */
+.workarea{width:1200px;height:600px;}
+.workarea canvas{cursor:pointer;}

@@ -1,0 +1,21 @@
+/* ------
+	chartdefault.style
+	2018.12
+	bruce.lee
+ -------- */
+
+ body{background: url(../images/nback.jpg) center top no-repeat;padding:0 70px;}
+ .user{text-align:right;padding-top:25px;color:#fff;}
+ .user a{color:#fff;font-size: 12px;text-decoration:underline; }
+.mlayout{padding-left:320px;position:relative;}
+ .leftmenu{border:1px solid rgba(255,255,255,0.5);box-shadow: 1px 1px 5px #333;background:rgba(255,255,255,0.2);border-radius:8px;padding:10px;padding-top:30px;padding-left:30px;width: 290px;position:absolute;left:0;top:0;}
+ .leftmenu .item{float:left;width:115px;padding-bottom:25px;text-align: center;}
+ .leftmenu .item img{display:inline-block;}
+ .leftmenu .item a{color:#fff;display:block;height:35px;line-height:35px;text-align: center;}
+ .chartbox{border:1px solid rgba(255,255,255,0.5);box-shadow: 1px 1px 5px #333;height:315px;background:rgba(255,255,255,0.2);border-radius:8px;}
+ .chartbox .title{text-align:center;padding:15px 0;}
+ .chartbox .title span{display:inline-block;padding:0 25px;border-radius:13px;height:25px;line-height: 25px;background:rgba(255,255,255,1);color:#0a3d91;font-size: 15px;}
+ .chartbox .cinner{text-align: center;padding:10px 15px;}
+ .chartbox .cinner img{max-width: 100%}
+ #header{height:80px;}
+ #footer{font-size: 14px;color:#fff;text-align: center;height:50px;line-height: 50px;}

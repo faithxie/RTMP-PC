@@ -5,7 +5,7 @@ use Think\Controller;
 /**
  * 机构管理
  */
-class UserController extends BaseController {
+class UserController extends Controller {
     /**
      * 人员管理列表
      */
@@ -15,6 +15,15 @@ class UserController extends BaseController {
       	$my = I('my');
       	$this->assign('id',$id);
       	$this->assign('my',$my);
+
+		// dump($id);
+		// dump($my);
+		// $roomid = '';
+		// $you = M('ggUser')->where()->find();
+      	 $user = session('user');
+        $this->assign('name',$user['realname']);
+
+
         $this->display();
     }
     public function publish($value='')
@@ -23,7 +32,7 @@ class UserController extends BaseController {
     	$myphone = I('myphone');
     	$callphone = I('callphone');
 
-    	$url = "http://xxxxxxx.cn/mqtt/examples/postmessage.php";
+    	$url = "http://xxxxxxxx.cn/mqtt/examples/postmessage.php";
 			//初始化
 		    $curl = curl_init();
 		    //设置抓取的url
@@ -48,6 +57,12 @@ class UserController extends BaseController {
 		   $r = json_encode($data);
 		   echo $r;
 
+    }
+
+    public function mult($value='')
+    {
+    	# code...
+    	$this->display();
     }
   }
    

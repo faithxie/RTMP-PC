@@ -1,0 +1,91 @@
+/*
+* Copyright (c) 2017-2020 Lir Corporation. All rights reserved.
+*┌───────────────────────────────────────────┐
+*│　        www.doposoft.cn           　│
+*│　     版权所有：东博信息科技有限公司     │
+*└───────────────────────────────────────────┘
+*/
+/*
+    功能 ：页面css
+	bruce.lee
+	2017.12.14
+*/
+
+/* 数据分析框架页面 */
+.drhead{width:100%;background:#cecece;text-align:center;border:none;height:40px;line-height:40px;font-size:18px;color:#000;border-radius:5px;}
+.panel-body{padding:10px;}
+.cdp{position:absolute;right:30px;top:25px;width:20px;height:20px;font-size:20px;color:#000;}
+.drbody{padding:20px;}
+.drbody h3{font-size:15px;color:#999;padding:15px 0;}
+.drval{font-size:50px;color:#c11111;}
+.drval span{font-size:22px;color:#333;}
+
+/*昨日值*/
+.zrval .item{margin-bottom:20px;}
+.zrval .item:last-child{margin-bottom:0;}
+.zrval .item .yico{height:45px;color:#fff;font-size:20px;line-height:45px;text-align:center;border-radius:5px;min-width:60px;}
+.zrval .item .yico.max{background:#e60012;}
+.zrval .item .yico.min{background:#22ac38;}
+.zrval .item .yico.total{background:#00a0e9;}
+.zrval .item .yico.pingjun{background:#eb6100;}
+.zrval .item .yico.lvke{background:#0075a9;}
+.zrval .item .yinfo{padding-left:0;}
+.zrval .item .yinfo .ylable{font-size:12px;color:#7b7b7b;padding-bottom:5px;}
+.zrval .item .yinfo .ycount{font-size:28px;color:#c11111;}
+.zrval .item .yinfo .ycount span{font-size:14px;color:#333;}
+
+/*chartbox*/
+.dtchart{text-align:center;}
+.panel{margin-bottom:0;}
+.panel.dt0{height:285px;}
+
+/*数据分析页面布局panel高度*/
+.binfo{font-size:15px;color:#333;text-align:center;}
+.binfo span{font-size:20px;color:#00a0e9;}
+
+/* tablestyle */
+.fmtit{min-width:70px;font-size:14px;color:#333;}
+.form-group{margin-right:5px;}
+.searchitem{padding-bottom:5px;border-bottom:0px solid #dcdcdc;}
+.btnin{padding-left:80px;}
+
+/* winstyle */
+.hwin{display:none;padding:20px;}
+.hwin .form-inline .form-control{width:150px;}
+.datetimepicker{z-index:99999999}
+.hwin .form-group{position:relative;}
+.hwin .form-group .wdp{position:absolute;right:10px;top:10px;color:#428bca;}
+.hwin .btnin{border-bottom:1px solid #dcdcdc;padding-bottom:15px;}
+
+/**/
+.smenu .list-group-item i{margin-right:10px;}
+.smenu .list-group-item.on{background:#f1f1f1;border-right:none;}
+
+/* easyui style reload */
+.panel-header{height:35px;padding:0;}
+.panel-title{height:35px;line-height:35px;padding-left:15px;font-size:15px;}
+.panel-body{padding:0;}
+.datagrid-header-row,.datagrid-row{height:30px;}
+.datagrid-row-selected{background:#2baed8;color:#fff;}
+.textbox-label{font-size:14px;text-align:center !important;}
+.textbox .textbox-text{height:25px;font-size:13px;padding:0;padding-left:5px;min-width: 80px;margin-right:0 !important;}
+.textbox{border-radius:3px;border-color:#c5c5c5;height:25px;line-height:25px;color:#333;}
+.textbox-focused{border:1px solid #00a1ff;box-shadow: 0 0 5px #8be5fb}
+.window, .window-shadow{border-radius:3px;}
+.combobox-item, .combobox-group, .combobox-stick{padding:8px;}
+.textbox-invalid{border-color:#fb6b6b;}
+.n70{text-align: center;padding:10px 0;}
+
+/*menustyle 2019.1 bruce.lee*/
+.showarrow{width:14px;height:36px;position:absolute;right:-13px;top:0;}
+.showarrow a{cursor:pointer;}
+.showarrow a.hideit{display:block;width:100%;height:100%;background:url("../images/pageback.png") 0 0 no-repeat;}
+.showarrow a.hideit:hover{background:url("../images/pageback.png") -20px 0 no-repeat;}
+.showarrow a.showit{display:block;width:100%;height:100%;background:url("../images/pageback.png") -40px 0 no-repeat;}
+.showarrow a.showit:hover{background:url("../images/pageback.png") -60px 0 no-repeat;}
+.list-group-item:first-child{border-radius:0}
+.list-group-item:last-child{border-radius:0}
+.zoombtn{position:absolute;bottom:10px;right:0;background:url(../images/pageback.png) -20px -40px no-repeat;width:29px;height:15px;cursor:pointer;}
+
+.scbtn{position:absolute;bottom:10px;right:0;background:url(../images/pageback.png) -20px -60px no-repeat;width:29px;height:15px;cursor:pointer;}
+

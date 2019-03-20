@@ -40,12 +40,16 @@ require(["rtmp-streamer"], function (RtmpStreamer) {
 
 
      document.getElementById("call").addEventListener("click", function () {
-        // alert('测试提示');
         // player.disconnect();
-         streamer.setScreenSize(520,365);
+         streamer.setCamMode(320,320);
+         streamer.setScreenSize(320,320);
+         streamer.setScreenPosition(50,50);
          streamer.publish(getUrl(), getMyName());
 
-          player.setScreenSize(520,365);
+
+        // player.setCamMode(320,320);
+         player.setScreenSize(520,365);
+          // player.setScreenPosition(10,10);
          player.play(getUrl(), getName());
 
     });
